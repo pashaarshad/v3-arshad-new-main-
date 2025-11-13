@@ -124,37 +124,86 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Custom Scrollbar */
+/* Custom Animated Matrix Scrollbar */
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 14px;
 }
 
 ::-webkit-scrollbar-track {
   background: var(--bg-secondary);
+  border-radius: 10px;
+  position: relative;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--accent-primary);
-  border-radius: 5px;
+  background: linear-gradient(180deg, 
+    var(--accent-secondary) 0%, 
+    var(--accent-primary) 50%, 
+    var(--accent-secondary) 100%);
+  border-radius: 10px;
+  border: 2px solid var(--bg-secondary);
+  box-shadow: 
+    0 0 10px var(--accent-primary),
+    0 0 20px var(--accent-primary),
+    inset 0 0 10px rgba(255, 255, 255, 0.3);
+  animation: scrollbarPulse 2s ease-in-out infinite;
+  position: relative;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-hover);
+  background: linear-gradient(180deg, 
+    var(--accent-secondary) 0%, 
+    var(--accent-hover) 50%, 
+    var(--accent-secondary) 100%);
+  box-shadow: 
+    0 0 15px var(--accent-primary),
+    0 0 30px var(--accent-primary),
+    0 0 45px var(--accent-secondary),
+    inset 0 0 15px rgba(255, 255, 255, 0.5);
+}
+
+@keyframes scrollbarPulse {
+  0%, 100% {
+    box-shadow: 
+      0 0 10px var(--accent-primary),
+      0 0 20px var(--accent-primary),
+      inset 0 0 10px rgba(255, 255, 255, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 0 20px var(--accent-primary),
+      0 0 40px var(--accent-primary),
+      0 0 60px var(--accent-secondary),
+      inset 0 0 15px rgba(255, 255, 255, 0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
 }
 
 /* Navigation Gradient */
 .nav-gradient {
-  background: var(--nav-bg);
+  background: transparent !important;
 }
 
 [data-theme="dark"] .nav-gradient {
-  background: linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(30, 41, 59, 0.95) 100%);
-  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
+  background: transparent !important;
+  box-shadow: none;
 }
 
 [data-theme="light"] .nav-gradient {
-  background: rgba(250, 251, 252, 0.95);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+  background: transparent !important;
+  box-shadow: none;
 }
 
 /* Swiper Custom Styles */

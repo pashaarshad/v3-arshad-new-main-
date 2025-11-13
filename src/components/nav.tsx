@@ -247,7 +247,7 @@ const Navbar = () => {
 
   return (
     <div className="sticky top-0 left-0 right-0 z-50 w-full px-4 py-4 transition-colors duration-300">
-      <nav className="w-full max-w-7xl mx-auto flex items-center justify-between px-4 py-2 bg-nav-bg backdrop-blur-md border border-nav-border rounded-full shadow-2xl transition-colors duration-300">
+      <nav className="w-full max-w-7xl mx-auto flex items-center justify-between px-4 py-2 nav-gradient backdrop-blur-md border border-nav-border rounded-full shadow-2xl transition-colors duration-300">
         {/* Logo */}
         <a
           href="#home"
@@ -357,7 +357,7 @@ const Navbar = () => {
       {/* Mobile Menu */}
       <div
         ref={mobileMenuRef}
-        className="md:hidden absolute top-[80px] left-4 right-4 rounded-2xl shadow-2xl bg-nav-bg backdrop-blur-lg origin-top border border-nav-border"
+        className="md:hidden absolute top-[80px] left-4 right-4 rounded-2xl shadow-2xl nav-gradient backdrop-blur-lg origin-top border border-nav-border"
       >
         <ul className="list-none m-0 p-2 flex flex-col gap-1">
           {navItems.map((item, index) => (

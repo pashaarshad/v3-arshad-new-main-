@@ -65,6 +65,7 @@ const ThemeToggle = () => {
       onClick={handleClick}
       className="relative w-12 h-12 rounded-full bg-nav-bg border border-nav-border shadow-lg hover:scale-110 transition-transform duration-300 flex items-center justify-center overflow-hidden"
       aria-label="Toggle theme"
+      suppressHydrationWarning
     >
       {/* Sun Icon */}
       <svg
