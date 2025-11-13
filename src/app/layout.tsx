@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Cherry_Cream_Soda } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/context/ThemeContext";
 
@@ -10,6 +10,12 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const cherryCreamSoda = Cherry_Cream_Soda({
+  variable: "--font-cherry-cream",
+  weight: "400",
   subsets: ["latin"],
 });
 
@@ -46,7 +52,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${cherryCreamSoda.variable} antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider>
