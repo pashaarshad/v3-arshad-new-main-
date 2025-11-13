@@ -3,6 +3,12 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, EffectCube, Pagination, Navigation } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-cube';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,30 +66,89 @@ const About = () => {
     <section 
       ref={sectionRef}
       id="about" 
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-20 px-4 sm:px-6 lg:px-8"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gradient-start via-bg-secondary to-gradient-end py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-300"
     >
-      <div className="max-w-6xl mx-auto w-full">
+      <div className="max-w-7xl mx-auto w-full">
         <h2 
           ref={titleRef}
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-12 text-center"
+          className="text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary mb-12 text-center"
         >
-          About <span className="text-yellow-400">Me</span>
+          About <span className="text-accent-secondary">Me</span>
         </h2>
         
-        <div 
-          ref={summaryRef}
-          className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-8 mb-12 shadow-2xl"
-        >
-          <h3 className="text-2xl font-bold text-yellow-400 mb-4">Professional Summary</h3>
-          <p className="text-lg text-gray-300 leading-relaxed">
-            Motivated Full Stack Web Developer with expertise in <span className="text-blue-400 font-semibold">Front-end</span> and <span className="text-blue-400 font-semibold">Back-end</span> development 
-            using ReactJS, NextJS, and MySQL, along with strong skills in Automation and cybersecurity. 
-            Experienced in delivering <span className="text-yellow-400 font-semibold">10+ real-world projects</span>, including UiPath-powered 
-            RPA workflows, expert use of GitHub and GitLab for version control, and secure applications with 
-            Encryption and Ethical hacking practices. Certified in <span className="text-green-400 font-semibold">Google Cloud</span>, 
-            <span className="text-green-400 font-semibold"> Infosys Springboard</span>, and <span className="text-green-400 font-semibold">Oracle Cloud</span>, 
-            with practical exposure to Vertex AI, API integration, and data-driven solutions.
-          </p>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 mb-12">
+          {/* Left Side - Image Carousel */}
+          <div className="relative order-2 lg:order-1">
+            <Swiper
+              modules={[Autoplay, EffectCube, Pagination, Navigation]}
+              effect="cube"
+              grabCursor={true}
+              cubeEffect={{
+                shadow: true,
+                slideShadows: true,
+                shadowOffset: 20,
+                shadowScale: 0.94,
+              }}
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+              }}
+              navigation={true}
+              loop={true}
+              className="rounded-2xl shadow-2xl overflow-hidden about-swiper"
+            >
+              <SwiperSlide>
+                <div className="relative group">
+                  <img 
+                    src="/arshad_about.jpg" 
+                    alt="Arshad Pasha - About" 
+                    className="w-full h-[500px] object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="relative group">
+                  <img 
+                    src="/arshad_sap_about.jpg" 
+                    alt="Arshad Pasha - SAP" 
+                    className="w-full h-[500px] object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="relative group">
+                  <img 
+                    src="/arshad_infosys_about.jpg" 
+                    alt="Arshad Pasha - Infosys" 
+                    className="w-full h-[500px] object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </SwiperSlide>
+            </Swiper>
+          </div>
+
+          {/* Right Side - Professional Summary */}
+          <div 
+            ref={summaryRef}
+            className="bg-card-bg backdrop-blur-sm border border-card-border rounded-2xl p-6 sm:p-8 shadow-2xl transition-colors duration-300 order-1 lg:order-2 flex flex-col justify-center"
+          >
+            <h3 className="text-2xl sm:text-3xl font-bold text-accent-secondary mb-4 sm:mb-6">Professional Summary</h3>
+            <p className="text-base sm:text-lg text-text-secondary leading-relaxed">
+              Motivated Full Stack Web Developer with expertise in <span className="text-accent-primary font-semibold">Front-end</span> and <span className="text-accent-primary font-semibold">Back-end</span> development 
+              using ReactJS, NextJS, and MySQL, along with strong skills in Automation and cybersecurity. 
+              Experienced in delivering <span className="text-accent-secondary font-semibold">10+ real-world projects</span>, including UiPath-powered 
+              RPA workflows, expert use of GitHub and GitLab for version control, and secure applications with 
+              Encryption and Ethical hacking practices. Certified in <span className="text-green-500 font-semibold">Google Cloud</span>, 
+              <span className="text-green-500 font-semibold"> Infosys Springboard</span>, and <span className="text-green-500 font-semibold">Oracle Cloud</span>, 
+              with practical exposure to Vertex AI, API integration, and data-driven solutions.
+            </p>
+          </div>
         </div>
 
         <div ref={cardsRef} className="grid grid-cols-1 md:grid-cols-3 gap-6">

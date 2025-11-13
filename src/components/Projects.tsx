@@ -45,28 +45,36 @@ const Projects = () => {
   return (
     <section 
       id="projects" 
-      className="min-h-screen flex items-center justify-center bg-white py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gradient-start via-bg-secondary to-gradient-end py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-300"
     >
       <div className="max-w-6xl mx-auto w-full">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-8 sm:mb-12 text-center">
-          Projects
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary mb-8 sm:mb-12 text-center">
+          <span className="text-accent-secondary">Featured</span> Projects
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {projects.map((project) => (
             <div 
               key={project.id} 
-              className="bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+              className="bg-card-bg backdrop-blur-sm border border-card-border rounded-xl shadow-lg overflow-hidden hover:shadow-2xl hover:scale-105 transition-all duration-300 group"
             >
-              <div className={`h-36 sm:h-40 md:h-48 bg-gradient-to-br ${project.gradient}`}></div>
+              <div className={`h-36 sm:h-40 md:h-48 bg-gradient-to-br ${project.gradient} relative overflow-hidden`}>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+              </div>
               <div className="p-4 sm:p-5 md:p-6">
-                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">
+                <h3 className="text-lg sm:text-xl font-bold text-text-primary mb-2 group-hover:text-accent-primary transition-colors">
                   {project.title}
                 </h3>
-                <p className="text-sm sm:text-base text-gray-700 mb-3 sm:mb-4 line-clamp-2">
+                <p className="text-sm sm:text-base text-text-secondary mb-3 sm:mb-4 line-clamp-2">
                   {project.description}
                 </p>
-                <button className="text-blue-600 font-semibold hover:text-blue-700 transition-colors text-sm sm:text-base">
-                  View Details →
+                <button 
+                  className="text-accent-primary font-semibold hover:text-accent-hover transition-colors text-sm sm:text-base flex items-center gap-2 group-hover:gap-3"
+                  suppressHydrationWarning
+                >
+                  View Details 
+                  <svg className="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
                 </button>
               </div>
             </div>

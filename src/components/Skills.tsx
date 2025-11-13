@@ -114,14 +114,14 @@ const Skills = () => {
     <section 
       ref={sectionRef}
       id="skills" 
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 py-20 px-4 sm:px-6 lg:px-8"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gradient-start via-bg-secondary to-gradient-end py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto w-full">
         <h2 
           ref={titleRef}
-          className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-16 text-center"
+          className="text-4xl sm:text-5xl md:text-6xl font-bold text-text-primary mb-16 text-center"
         >
-          Technical <span className="text-yellow-400">Skills</span>
+          Technical <span className="text-accent-secondary">Skills</span>
         </h2>
         
         <div 
@@ -135,13 +135,13 @@ const Skills = () => {
             >
               <div className="flex items-center gap-3 mb-4">
                 <span className="text-3xl">{category.icon}</span>
-                <h3 className="text-lg font-bold text-white">{category.title}</h3>
+                <h3 className="text-lg font-bold text-text-primary">{category.title}</h3>
               </div>
               <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, skillIndex) => (
                   <span
                     key={skillIndex}
-                    className="bg-gray-800/50 text-gray-300 px-3 py-1 rounded-full text-xs font-medium hover:bg-gray-700/70 transition-colors duration-200"
+                    className="bg-card-bg text-text-secondary px-3 py-1 rounded-full text-xs font-medium hover:bg-card-bg-hover transition-colors duration-200"
                   >
                     {skill}
                   </span>

@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { gsap } from 'gsap';
 import PixelEffect from './PixelEffect';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
   const navItems = [
@@ -245,8 +246,8 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-4 left-0 right-0 z-50 w-full px-4">
-      <nav className="w-full max-w-7xl mx-auto flex items-center justify-between px-4 py-2 bg-gray-900/95 backdrop-blur-md border border-gray-700 rounded-full shadow-2xl">
+    <div className="sticky top-0 left-0 right-0 z-50 w-full px-4 py-4 transition-colors duration-300">
+      <nav className="w-full max-w-7xl mx-auto flex items-center justify-between px-4 py-2 bg-nav-bg backdrop-blur-md border border-nav-border rounded-full shadow-2xl transition-colors duration-300">
         {/* Logo */}
         <a
           href="#home"
@@ -282,8 +283,8 @@ const Navbar = () => {
                     onClick={(e) => handleScroll(e, item.href, i)}
                     className={`relative overflow-hidden inline-flex items-center justify-center h-full no-underline rounded-full box-border font-semibold text-[13px] leading-[0] uppercase tracking-[0.8px] whitespace-nowrap cursor-pointer px-5 py-2 transition-colors duration-300 ${
                       isActive 
-                        ? 'bg-gray-800 text-yellow-400' 
-                        : 'bg-transparent text-gray-300 hover:bg-gray-800 hover:text-white'
+                        ? 'bg-nav-active-bg text-accent-secondary' 
+                        : 'bg-transparent text-nav-text hover:bg-nav-active-bg hover:text-nav-text-hover'
                     }`}
                     onMouseEnter={() => handleEnter(i)}
                     onMouseLeave={() => handleLeave(i)}
@@ -296,7 +297,7 @@ const Navbar = () => {
                       colors={isActive ? "#fbbf24,#f59e0b,#d97706" : "#3b82f6,#60a5fa,#93c5fd"}
                     />
                     <span
-                      className="absolute left-1/2 bottom-0 rounded-full z-[1] block pointer-events-none bg-blue-600"
+                      className="absolute left-1/2 bottom-0 rounded-full z-[1] block pointer-events-none bg-accent-primary"
                       style={{ willChange: 'transform' }}
                       aria-hidden="true"
                       ref={el => {
@@ -306,7 +307,7 @@ const Navbar = () => {
                     <span className="relative inline-block leading-[1] z-[2]">
                       <span
                         className={`pill-label relative z-[2] inline-block leading-[1] ${
-                          isActive ? 'text-yellow-400 font-bold' : ''
+                          isActive ? 'text-accent-secondary font-bold' : ''
                         }`}
                         style={{ willChange: 'transform' }}
                       >
@@ -314,7 +315,7 @@ const Navbar = () => {
                       </span>
                       <span
                         className={`pill-label-hover absolute left-0 top-0 z-[3] inline-block ${
-                          isActive ? 'text-yellow-300' : 'text-white'
+                          isActive ? 'text-accent-secondary' : 'text-nav-text-hover'
                         }`}
                         style={{ willChange: 'transform, opacity' }}
                         aria-hidden="true"
@@ -324,7 +325,7 @@ const Navbar = () => {
                     </span>
                     {isActive && (
                       <span
-                        className="absolute left-1/2 -bottom-[6px] -translate-x-1/2 w-2 h-2 rounded-full z-[4] bg-yellow-400 animate-pulse"
+                        className="absolute left-1/2 -bottom-[6px] -translate-x-1/2 w-2 h-2 rounded-full z-[4] bg-accent-secondary animate-pulse"
                         aria-hidden="true"
                       />
                     )}
@@ -335,24 +336,28 @@ const Navbar = () => {
           </ul>
         </div>
 
-        {/* Mobile Hamburger */}
-        <button
-          ref={hamburgerRef}
-          onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
-          aria-expanded={isMobileMenuOpen}
-          className="md:hidden rounded-full flex flex-col items-center justify-center gap-1.5 cursor-pointer p-0 bg-gray-800 w-[48px] h-[48px] shadow-lg border border-gray-700"
-        >
-          <span className="hamburger-line w-5 h-0.5 rounded origin-center bg-gray-300" />
-          <span className="hamburger-line w-5 h-0.5 rounded origin-center bg-gray-300" />
-          <span className="hamburger-line w-5 h-0.5 rounded origin-center bg-gray-300" />
-        </button>
+        {/* Theme Toggle & Mobile Hamburger */}
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+          
+          <button
+            ref={hamburgerRef}
+            onClick={toggleMobileMenu}
+            aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen}
+            className="md:hidden rounded-full flex flex-col items-center justify-center gap-1.5 cursor-pointer p-0 bg-nav-active-bg w-[48px] h-[48px] shadow-lg border border-nav-border"
+          >
+            <span className="hamburger-line w-5 h-0.5 rounded origin-center bg-nav-text" />
+            <span className="hamburger-line w-5 h-0.5 rounded origin-center bg-nav-text" />
+            <span className="hamburger-line w-5 h-0.5 rounded origin-center bg-nav-text" />
+          </button>
+        </div>
       </nav>
 
       {/* Mobile Menu */}
       <div
         ref={mobileMenuRef}
-        className="md:hidden fixed top-[72px] left-4 right-4 rounded-2xl shadow-2xl bg-gray-800/95 backdrop-blur-lg origin-top border border-gray-700"
+        className="md:hidden absolute top-[80px] left-4 right-4 rounded-2xl shadow-2xl bg-nav-bg backdrop-blur-lg origin-top border border-nav-border"
       >
         <ul className="list-none m-0 p-2 flex flex-col gap-1">
           {navItems.map((item, index) => (
@@ -363,7 +368,7 @@ const Navbar = () => {
                   handleScroll(e, item.href, index);
                   toggleMobileMenu();
                 }}
-                className="block py-3 px-5 text-base font-semibold rounded-full bg-gray-700 text-gray-300 hover:bg-gray-600 hover:text-white transition-all duration-200"
+                className="block py-3 px-5 text-base font-semibold rounded-full bg-nav-active-bg text-nav-text hover:bg-card-bg-hover hover:text-nav-text-hover transition-all duration-200"
               >
                 {item.name}
               </a>

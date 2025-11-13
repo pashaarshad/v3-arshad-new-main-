@@ -1,26 +1,203 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* Light Theme Variables - Optimized for readability & professional feel */
+:root[data-theme="light"] {
+  /* Background Colors - Soft, easy on eyes */
+  --bg-primary: #fafbfc;
+  --bg-secondary: #f6f8fa;
+  --bg-tertiary: #ffffff;
+  
+  /* Text Colors - High contrast for readability */
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a5568;
+  --text-tertiary: #718096;
+  
+  /* Accent Colors - Professional blue & energetic yellow */
+  --accent-primary: #2563eb;
+  --accent-secondary: #f59e0b;
+  --accent-hover: #1d4ed8;
+  
+  /* Border Colors - Subtle separation */
+  --border-primary: #e2e8f0;
+  --border-secondary: #cbd5e0;
+  
+  /* Card Colors - Clean white cards */
+  --card-bg: #ffffff;
+  --card-bg-hover: #f8fafc;
+  --card-border: #e2e8f0;
+  
+  /* Navigation Colors - Professional & clean */
+  --nav-bg: rgba(250, 251, 252, 0.95);
+  --nav-border: #e2e8f0;
+  --nav-text: #4a5568;
+  --nav-text-hover: #1a1a1a;
+  --nav-active-bg: #f1f5f9;
+  
+  /* Gradient Backgrounds - Soft, welcoming */
+  --gradient-start: #f0f9ff;
+  --gradient-end: #fef3c7;
+  
+  /* Shadow - Subtle depth */
+  --shadow-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Dark Theme Variables - Reduced eye strain, modern aesthetic */
+:root[data-theme="dark"] {
+  /* Background Colors - Deep but not pure black */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  
+  /* Text Colors - Optimized contrast (not pure white) */
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  
+  /* Accent Colors - Vibrant but eye-friendly */
+  --accent-primary: #3b82f6;
+  --accent-secondary: #fbbf24;
+  --accent-hover: #60a5fa;
+  
+  /* Border Colors - Subtle in dark mode */
+  --border-primary: #334155;
+  --border-secondary: #475569;
+  
+  /* Card Colors - Elevated surfaces */
+  --card-bg: rgba(30, 41, 59, 0.6);
+  --card-bg-hover: rgba(51, 65, 85, 0.8);
+  --card-border: #334155;
+  
+  /* Navigation Colors - Enhanced glass morphism with blue accent */
+  --nav-bg: rgba(15, 23, 42, 0.95);
+  --nav-border: rgba(59, 130, 246, 0.4);
+  --nav-text: #e2e8f0;
+  --nav-text-hover: #fbbf24;
+  --nav-active-bg: rgba(59, 130, 246, 0.15);
+  
+  /* Gradient Backgrounds - Atmospheric depth */
+  --gradient-start: #1e293b;
+  --gradient-end: #0f172a;
+  
+  /* Shadow - Enhanced for dark mode */
+  --shadow-color: rgba(0, 0, 0, 0.4);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  
+  /* Custom Theme Colors for Tailwind */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-secondary: var(--bg-secondary);
+  --color-bg-tertiary: var(--bg-tertiary);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-accent-primary: var(--accent-primary);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-accent-hover: var(--accent-hover);
+  --color-border-primary: var(--border-primary);
+  --color-border-secondary: var(--border-secondary);
+  --color-card-bg: var(--card-bg);
+  --color-card-bg-hover: var(--card-bg-hover);
+  --color-card-border: var(--card-border);
+  --color-nav-bg: var(--nav-bg);
+  --color-nav-border: var(--nav-border);
+  --color-nav-text: var(--nav-text);
+  --color-nav-text-hover: var(--nav-text-hover);
+  --color-nav-active-bg: var(--nav-active-bg);
+  --color-gradient-start: var(--gradient-start);
+  --color-gradient-end: var(--gradient-end);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--bg-primary);
+  color: var(--text-primary);
   font-family: Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--accent-primary);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-hover);
+}
+
+/* Navigation Gradient */
+.nav-gradient {
+  background: var(--nav-bg);
+}
+
+[data-theme="dark"] .nav-gradient {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.98) 0%, rgba(30, 41, 59, 0.95) 100%);
+  box-shadow: 0 8px 32px rgba(59, 130, 246, 0.15);
+}
+
+[data-theme="light"] .nav-gradient {
+  background: rgba(250, 251, 252, 0.95);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* Swiper Custom Styles */
+.swiper-pagination-bullet {
+  background: var(--accent-primary) !important;
+  opacity: 0.5;
+}
+
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  background: var(--accent-secondary) !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: var(--accent-primary) !important;
+  background: var(--bg-primary) !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 50% !important;
+  transition: all 0.3s ease !important;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: var(--accent-primary) !important;
+  color: var(--bg-primary) !important;
+  transform: scale(1.1);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px !important;
+  font-weight: bold !important;
+}
+
+.about-swiper .swiper-button-next,
+.about-swiper .swiper-button-prev {
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease !important;
+}
+
+.about-swiper:hover .swiper-button-next,
+.about-swiper:hover .swiper-button-prev {
+  opacity: 1;
 }

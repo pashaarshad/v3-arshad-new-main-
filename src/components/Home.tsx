@@ -2,6 +2,11 @@
 
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/effect-fade';
+import 'swiper/css/pagination';
 
 const Home = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
@@ -40,41 +45,44 @@ const Home = () => {
   return (
     <section 
       id="home" 
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 pt-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gradient-start via-bg-secondary to-gradient-end px-4 sm:px-6 lg:px-8 relative overflow-hidden transition-colors duration-300"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute w-96 h-96 bg-blue-500/10 rounded-full blur-3xl -top-48 -left-48 animate-pulse"></div>
-        <div className="absolute w-96 h-96 bg-yellow-500/10 rounded-full blur-3xl -bottom-48 -right-48 animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute w-96 h-96 bg-accent-primary/10 rounded-full blur-3xl -top-48 -left-48 animate-pulse"></div>
+        <div className="absolute w-96 h-96 bg-accent-secondary/10 rounded-full blur-3xl -bottom-48 -right-48 animate-pulse" style={{ animationDelay: '1s' }}></div>
       </div>
 
-      <div className="max-w-5xl mx-auto text-center w-full relative z-10">
-        <h1 
-          ref={titleRef}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-4 sm:mb-6 leading-tight"
-        >
-          ARSHAD PASHA
-        </h1>
+      <div className="max-w-7xl mx-auto w-full relative z-10">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+          {/* Left Side - Content */}
+          <div className="text-center lg:text-left">
+            <h1 
+              ref={titleRef}
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-text-primary mb-4 sm:mb-6 leading-tight"
+            >
+              ARSHAD PASHA
+            </h1>
         
         <p 
           ref={subtitleRef}
-          className="text-xl sm:text-2xl md:text-3xl text-gray-300 mb-6 sm:mb-8 px-4 font-light"
+          className="text-xl sm:text-2xl md:text-3xl text-text-secondary mb-6 sm:mb-8 px-4 font-light"
         >
-          <span className="text-yellow-400 font-semibold">Full Stack Web Developer</span>
-          <span className="mx-3 text-gray-600">|</span>
-          <span className="text-blue-400">AI/ML & Data Science Enthusiast</span>
+          <span className="text-accent-secondary font-semibold">Full Stack Web Developer</span>
+          <span className="mx-3 text-text-tertiary">|</span>
+          <span className="text-accent-primary">AI/ML & Data Science Enthusiast</span>
         </p>
 
-        <p className="text-base sm:text-lg md:text-xl text-gray-400 mb-8 px-4 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-base sm:text-lg md:text-xl text-text-tertiary mb-8 px-4 max-w-3xl mx-auto leading-relaxed">
           Motivated Full Stack Developer with expertise in ReactJS, NextJS, and MySQL. 
-          Experienced in delivering <span className="text-yellow-400 font-semibold">10+ real-world projects</span>, 
+          Experienced in delivering <span className="text-accent-secondary font-semibold">10+ real-world projects</span>, 
           RPA workflows, and secure applications. Passionate about building scalable, automated, and secure digital solutions.
         </p>
 
         <div ref={ctaRef} className="flex flex-wrap gap-4 justify-center mb-10">
           <a
             href="#projects"
-            className="group relative inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-blue-500/50"
+            className="group relative inline-flex items-center gap-2 bg-gradient-to-r from-accent-primary to-blue-700 text-white px-8 py-3 rounded-full font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-accent-primary/50"
           >
             View Projects
             <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -83,19 +91,19 @@ const Home = () => {
           </a>
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 bg-transparent border-2 border-yellow-400 text-yellow-400 px-8 py-3 rounded-full font-semibold hover:bg-yellow-400 hover:text-gray-900 transition-all duration-300 transform hover:scale-105"
+            className="inline-flex items-center gap-2 bg-transparent border-2 border-accent-secondary text-accent-secondary px-8 py-3 rounded-full font-semibold hover:bg-accent-secondary hover:text-bg-primary transition-all duration-300 transform hover:scale-105"
           >
             Get In Touch
           </a>
         </div>
 
-        {/* Social Links */}
-        <div ref={socialRef} className="flex justify-center gap-6">
-          <a
-            href="https://www.linkedin.com/in/arshadpasha"
+            {/* Social Links */}
+            <div ref={socialRef} className="flex justify-center lg:justify-start gap-6">
+              <a
+                href="https://www.linkedin.com/in/arshadpasha"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-blue-400 transition-colors duration-300 transform hover:scale-110"
+            className="text-text-tertiary hover:text-accent-primary transition-colors duration-300 transform hover:scale-110"
             aria-label="LinkedIn"
           >
             <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -106,7 +114,7 @@ const Home = () => {
             href="https://github.com/pashaarshad"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-yellow-400 transition-colors duration-300 transform hover:scale-110"
+            className="text-text-tertiary hover:text-accent-secondary transition-colors duration-300 transform hover:scale-110"
             aria-label="GitHub"
           >
             <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -117,13 +125,54 @@ const Home = () => {
             href="https://arshadpasha.tech"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-400 hover:text-blue-400 transition-colors duration-300 transform hover:scale-110"
+            className="text-text-tertiary hover:text-accent-primary transition-colors duration-300 transform hover:scale-110"
             aria-label="Website"
           >
             <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
             </svg>
-          </a>
+              </a>
+            </div>
+          </div>
+
+          {/* Right Side - Image Carousel */}
+          <div className="relative">
+            <Swiper
+              modules={[Autoplay, EffectFade, Pagination]}
+              effect="fade"
+              autoplay={{
+                delay: 2000,
+                disableOnInteraction: false,
+              }}
+              pagination={{
+                clickable: true,
+                dynamicBullets: true,
+              }}
+              loop={true}
+              className="rounded-2xl shadow-2xl overflow-hidden"
+            >
+              <SwiperSlide>
+                <div className="relative group overflow-hidden">
+                  <img 
+                    src="/arshad_infosysLogo.jpg" 
+                    alt="Arshad Pasha - Infosys" 
+                    className="w-full h-[500px] object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="relative group overflow-hidden">
+                  <img 
+                    src="/arshad_sap_home.jpg" 
+                    alt="Arshad Pasha - SAP" 
+                    className="w-full h-[500px] object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                </div>
+              </SwiperSlide>
+            </Swiper>
+          </div>
         </div>
       </div>
     </section>

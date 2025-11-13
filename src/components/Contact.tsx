@@ -27,18 +27,18 @@ const Contact = () => {
   return (
     <section 
       id="contact" 
-      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8"
+      className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gradient-start via-bg-secondary to-gradient-end py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-300"
     >
       <div className="max-w-4xl mx-auto w-full">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-8 sm:mb-12 text-center">
-          Contact Me
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary mb-8 sm:mb-12 text-center">
+          <span className="text-accent-secondary">Get In</span> Touch
         </h2>
-        <div className="bg-white p-6 sm:p-8 md:p-10 rounded-lg shadow-xl">
+        <div className="bg-card-bg backdrop-blur-sm border border-card-border p-6 sm:p-8 md:p-10 rounded-xl shadow-2xl">
           <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6" suppressHydrationWarning>
             <div>
               <label 
                 htmlFor="name" 
-                className="block text-sm font-semibold text-gray-700 mb-2"
+                className="block text-sm font-semibold text-text-secondary mb-2"
               >
                 Name
               </label>
@@ -50,14 +50,15 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 autoComplete="name"
-                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-bg-tertiary border border-border-primary text-text-primary rounded-lg focus:ring-2 focus:ring-accent-primary focus:border-transparent transition-all text-sm sm:text-base placeholder-text-tertiary"
                 placeholder="Your Name"
+                suppressHydrationWarning
               />
             </div>
             <div>
               <label 
                 htmlFor="email" 
-                className="block text-sm font-semibold text-gray-700 mb-2"
+                className="block text-sm font-semibold text-text-secondary mb-2"
               >
                 Email
               </label>
@@ -69,14 +70,15 @@ const Contact = () => {
                 onChange={handleChange}
                 required
                 autoComplete="email"
-                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all text-sm sm:text-base"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-bg-tertiary border border-border-primary text-text-primary rounded-lg focus:ring-2 focus:ring-accent-primary focus:border-transparent transition-all text-sm sm:text-base placeholder-text-tertiary"
                 placeholder="your.email@example.com"
+                suppressHydrationWarning
               />
             </div>
             <div>
               <label 
                 htmlFor="message" 
-                className="block text-sm font-semibold text-gray-700 mb-2"
+                className="block text-sm font-semibold text-text-secondary mb-2"
               >
                 Message
               </label>
@@ -87,25 +89,29 @@ const Contact = () => {
                 value={formData.message}
                 onChange={handleChange}
                 required
-                className="w-full px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none text-sm sm:text-base"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 bg-bg-tertiary border border-border-primary text-text-primary rounded-lg focus:ring-2 focus:ring-accent-primary focus:border-transparent transition-all resize-none text-sm sm:text-base placeholder-text-tertiary"
                 placeholder="Your message..."
+                suppressHydrationWarning
               ></textarea>
             </div>
             <button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2.5 sm:py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 text-sm sm:text-base"
+              className="w-full bg-gradient-to-r from-accent-primary to-blue-700 text-white py-3 sm:py-3.5 rounded-lg font-semibold hover:from-accent-hover hover:to-blue-800 transition-all duration-300 transform hover:scale-[1.02] text-sm sm:text-base shadow-lg hover:shadow-accent-primary/50"
+              suppressHydrationWarning
             >
               Send Message
             </button>
           </form>
           
           {/* Social Links */}
-          <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-gray-200">
-            <p className="text-center text-gray-600 mb-4 text-sm sm:text-base">Or connect with me on</p>
+          <div className="mt-8 sm:mt-10 pt-6 sm:pt-8 border-t border-border-primary">
+            <p className="text-center text-text-tertiary mb-4 text-sm sm:text-base">Or connect with me on</p>
             <div className="flex justify-center gap-4 sm:gap-6">
               <a 
-                href="#" 
-                className="text-gray-600 hover:text-blue-600 transition-colors transform hover:scale-110"
+                href="https://www.linkedin.com/in/arshadpasha" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-text-tertiary hover:text-accent-primary transition-all transform hover:scale-110 duration-300"
                 aria-label="LinkedIn"
               >
                 <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -113,8 +119,10 @@ const Contact = () => {
                 </svg>
               </a>
               <a 
-                href="#" 
-                className="text-gray-600 hover:text-blue-600 transition-colors transform hover:scale-110"
+                href="https://github.com/pashaarshad" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-text-tertiary hover:text-accent-secondary transition-all transform hover:scale-110 duration-300"
                 aria-label="GitHub"
               >
                 <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 24 24">
@@ -122,12 +130,14 @@ const Contact = () => {
                 </svg>
               </a>
               <a 
-                href="#" 
-                className="text-gray-600 hover:text-blue-600 transition-colors transform hover:scale-110"
-                aria-label="Twitter"
+                href="https://arshadpasha.tech" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-text-tertiary hover:text-accent-primary transition-all transform hover:scale-110 duration-300"
+                aria-label="Website"
               >
-                <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+                <svg className="w-6 h-6 sm:w-8 sm:h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                 </svg>
               </a>
             </div>
