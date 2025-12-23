@@ -117,6 +117,42 @@ const Certificates = () => {
     };
   }, []);
 
+  // Load cached previews from localStorage on mount
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      try {
+        const cached = localStorage.getItem('pdfPreviewsCache');
+        if (cached) {
+          const parsedCache = JSON.parse(cached);
+          // Check if cache is not too old (7 days)
+          if (parsedCache.timestamp && Date.now() - parsedCache.timestamp < 7 * 24 * 60 * 60 * 1000) {
+            setPdfPreviews(parsedCache.previews || {});
+          }
+        }
+      } catch (e) {
+        console.log('Cache read error:', e);
+      }
+    }
+  }, []);
+
+  // Save previews to localStorage when they change
+  useEffect(() => {
+    if (typeof window !== 'undefined' && Object.keys(pdfPreviews).length > 0) {
+      try {
+        const cacheData = {
+          timestamp: Date.now(),
+          previews: pdfPreviews
+        };
+        localStorage.setItem('pdfPreviewsCache', JSON.stringify(cacheData));
+      } catch (e) {
+        // localStorage might be full, clear old data
+        try {
+          localStorage.removeItem('pdfPreviewsCache');
+        } catch {}
+      }
+    }
+  }, [pdfPreviews]);
+
   const generatePdfPreview = useCallback(async (pdfUrl: string, key: string) => {
     if (pdfPreviews[key]) return;
     try {
@@ -126,10 +162,13 @@ const Certificates = () => {
         url: pdfUrl,
         cMapUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/cmaps/',
         cMapPacked: true,
+        disableAutoFetch: true,
+        disableStream: true,
       });
       const pdf = await loadingTask.promise;
       const page = await pdf.getPage(1);
-      const viewport = page.getViewport({ scale: 0.8 });
+      // Use smaller scale for faster rendering
+      const viewport = page.getViewport({ scale: 0.5 });
       const canvas = document.createElement('canvas');
       const context = canvas.getContext('2d', { alpha: false });
       canvas.height = viewport.height;
@@ -138,7 +177,8 @@ const Certificates = () => {
         canvasContext: context,
         viewport: viewport,
       }).promise;
-      const imageUrl = canvas.toDataURL('image/jpeg', 0.7);
+      // Use lower quality for smaller file size and faster caching
+      const imageUrl = canvas.toDataURL('image/jpeg', 0.5);
       setPdfPreviews(prev => ({ ...prev, [key]: imageUrl }));
       pdf.destroy();
     } catch (error) {
