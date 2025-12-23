@@ -39,10 +39,11 @@ const Skills = () => {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const sphereRef = useRef<HTMLDivElement>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const animationRef = useRef<number>(0);
   const rotationRef = useRef({ x: 0, y: 0 });
+  const targetRotationRef = useRef({ x: 0, y: 0 });
+  const velocityRef = useRef({ x: 10, y: 15 }); // Base auto-rotation velocity
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -85,7 +86,7 @@ const Skills = () => {
     return () => ctx.revert();
   }, []);
 
-  // Auto-rotate animation
+  // Smooth animation loop
   useEffect(() => {
     let lastTime = Date.now();
     
@@ -94,9 +95,15 @@ const Skills = () => {
       const deltaTime = (currentTime - lastTime) / 1000;
       lastTime = currentTime;
 
-      if (!isHovering) {
-        rotationRef.current.x += deltaTime * 15;
-        rotationRef.current.y += deltaTime * 10;
+      if (isHovering) {
+        // Smooth interpolation towards target rotation when hovering
+        const smoothFactor = 0.08; // Lower = smoother
+        rotationRef.current.x += (targetRotationRef.current.x - rotationRef.current.x) * smoothFactor;
+        rotationRef.current.y += (targetRotationRef.current.y - rotationRef.current.y) * smoothFactor;
+      } else {
+        // Auto-rotate with smooth velocity
+        rotationRef.current.x += velocityRef.current.x * deltaTime;
+        rotationRef.current.y += velocityRef.current.y * deltaTime;
       }
 
       animationRef.current = requestAnimationFrame(animate);
@@ -118,15 +125,22 @@ const Skills = () => {
     const centerX = rect.left + rect.width / 2;
     const centerY = rect.top + rect.height / 2;
     
+    // Normalized mouse position (-1 to 1)
     const x = (e.clientX - centerX) / (rect.width / 2);
     const y = (e.clientY - centerY) / (rect.height / 2);
     
-    setMousePosition({ x, y });
-    
-    if (isHovering) {
-      rotationRef.current.x += y * 2;
-      rotationRef.current.y += x * 2;
-    }
+    // Set target rotation based on mouse position
+    // Moving right increases Y rotation (rotates right)
+    // Moving down increases X rotation (rotates down)
+    const sensitivity = 50;
+    targetRotationRef.current.y = rotationRef.current.y + x * sensitivity;
+    targetRotationRef.current.x = rotationRef.current.x + y * sensitivity;
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+    // Smoothly continue from current rotation
+    targetRotationRef.current = { ...rotationRef.current };
   };
 
   // Calculate 3D position for each icon on the sphere
@@ -150,18 +164,13 @@ const Skills = () => {
     const y2 = baseY * Math.cos(rotX) - z1 * Math.sin(rotX);
     const z2 = baseY * Math.sin(rotX) + z1 * Math.cos(rotX);
     
-    // Add mouse influence
-    const mouseInfluence = isHovering ? 0.1 : 0;
-    const finalX = x1 + mousePosition.x * mouseInfluence;
-    const finalY = y2 + mousePosition.y * mouseInfluence;
-    
     const radius = 180;
     const scale = (z2 + 1.5) / 2.5;
     const opacity = Math.max(0.3, (z2 + 1) / 2);
     
     return {
-      x: finalX * radius,
-      y: finalY * radius,
+      x: x1 * radius,
+      y: y2 * radius,
       z: z2,
       scale,
       opacity,
@@ -261,10 +270,10 @@ const Skills = () => {
           {/* Right Side - Interactive 3D Sphere */}
           <div 
             ref={sphereRef}
-            className="relative w-full h-[500px] flex items-center justify-center cursor-pointer"
+            className="relative w-full h-[500px] flex items-center justify-center cursor-grab active:cursor-grabbing"
             onMouseMove={handleMouseMove}
             onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
+            onMouseLeave={handleMouseLeave}
           >
             {/* Background glow effect */}
             <div className="absolute inset-0 flex items-center justify-center">
@@ -276,10 +285,10 @@ const Skills = () => {
               {techIcons.map((tech, index) => {
                 const pos = getIconPosition(index, techIcons.length);
                 return (
-                  <a
+                  <div
                     key={tech.name}
                     title={tech.name}
-                    className="absolute cursor-pointer transition-all duration-100 hover:scale-150"
+                    className="absolute pointer-events-none"
                     style={{
                       left: `calc(50% + ${pos.x}px)`,
                       top: `calc(50% + ${pos.y}px)`,
@@ -291,12 +300,12 @@ const Skills = () => {
                     <img 
                       src={tech.icon} 
                       alt={tech.name}
-                      className="w-10 h-10 sm:w-12 sm:h-12 drop-shadow-lg hover:drop-shadow-2xl transition-all duration-200"
+                      className="w-10 h-10 sm:w-12 sm:h-12 drop-shadow-lg"
                       style={{
                         filter: pos.z < 0 ? 'grayscale(0.3)' : 'none',
                       }}
                     />
-                  </a>
+                  </div>
                 );
               })}
             </div>
