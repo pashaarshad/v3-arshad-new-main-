@@ -284,6 +284,8 @@ const Skills = () => {
             <div className="relative w-[400px] h-[400px]">
               {techIcons.map((tech, index) => {
                 const pos = getIconPosition(index, techIcons.length);
+                // Calculate how far back the icon is (0 = front, 1 = back)
+                const backAmount = (1 - pos.z) / 2;
                 return (
                   <div
                     key={tech.name}
@@ -300,9 +302,11 @@ const Skills = () => {
                     <img 
                       src={tech.icon} 
                       alt={tech.name}
-                      className="w-10 h-10 sm:w-12 sm:h-12 drop-shadow-lg"
+                      className="w-12 h-12 sm:w-14 sm:h-14 drop-shadow-lg"
                       style={{
-                        filter: pos.z < 0 ? 'grayscale(0.3)' : 'none',
+                        filter: pos.z < 0 
+                          ? `grayscale(${0.3 + backAmount * 0.5}) brightness(${1 - backAmount * 0.3}) opacity(${0.7 - backAmount * 0.2})` 
+                          : 'none',
                       }}
                     />
                   </div>
