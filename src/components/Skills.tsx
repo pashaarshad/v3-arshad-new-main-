@@ -40,10 +40,16 @@ const Skills = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const sphereRef = useRef<HTMLDivElement>(null);
   const [isHovering, setIsHovering] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const animationRef = useRef<number>(0);
   const rotationRef = useRef({ x: 0, y: 0 });
   const targetRotationRef = useRef({ x: 0, y: 0 });
   const velocityRef = useRef({ x: 10, y: 15 }); // Base auto-rotation velocity
+
+  // Fix hydration - only render sphere on client
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -88,6 +94,8 @@ const Skills = () => {
 
   // Smooth animation loop
   useEffect(() => {
+    if (!isMounted) return;
+    
     let lastTime = Date.now();
     
     const animate = () => {
@@ -116,7 +124,7 @@ const Skills = () => {
         cancelAnimationFrame(animationRef.current);
       }
     };
-  }, [isHovering]);
+  }, [isHovering, isMounted]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!sphereRef.current) return;
@@ -169,22 +177,23 @@ const Skills = () => {
     const opacity = Math.max(0.3, (z2 + 1) / 2);
     
     return {
-      x: x1 * radius,
-      y: y2 * radius,
+      x: Number(x1 * radius).toFixed(2),
+      y: Number(y2 * radius).toFixed(2),
       z: z2,
-      scale,
-      opacity,
+      scale: Number(scale).toFixed(4),
+      opacity: Number(opacity).toFixed(2),
     };
   };
 
   const [, setTick] = useState(0);
   
   useEffect(() => {
+    if (!isMounted) return;
     const interval = setInterval(() => {
       setTick(t => t + 1);
     }, 50);
     return () => clearInterval(interval);
-  }, []);
+  }, [isMounted]);
 
   return (
     <section 
@@ -290,7 +299,7 @@ const Skills = () => {
 
             {/* Tech icons sphere */}
             <div className="relative w-[400px] h-[400px]">
-              {techIcons.map((tech, index) => {
+              {isMounted && techIcons.map((tech, index) => {
                 const pos = getIconPosition(index, techIcons.length);
                 // Calculate how far back the icon is (0 = front, 1 = back)
                 const backAmount = (1 - pos.z) / 2;
