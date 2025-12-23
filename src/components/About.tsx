@@ -133,8 +133,8 @@ const About = () => {
             </Swiper>
 
             {/* Experience Badge - Bottom Right */}
-            <div className="absolute -bottom-8 -right-8 sm:-bottom-4 sm:-right-4 z-20 w-32 h-32 sm:w-40 sm:h-40">
-              <div className="relative w-full h-full bg-white rounded-full shadow-2xl border-4 border-gray-100">
+            <div className="absolute bottom-[7%] -right-8 sm:-right-4 z-20 w-36 h-36 sm:w-48 sm:h-48">
+              <div className="relative w-full h-full bg-white rounded-full shadow-2xl border-[3px] border-black">
                 {/* Animated rotating circle with text */}
                 <svg 
                   className="w-full h-full animate-spin-slow"
@@ -153,20 +153,21 @@ const About = () => {
                   </text>
                 </svg>
                 
-                {/* Center content with 3 - image inside the number */}
+                {/* Center content with 1 - image inside the number, with animated background */}
                 <div className="absolute inset-0 flex items-center justify-center">
                   <div 
-                    className="text-4xl sm:text-5xl font-bold bg-clip-text text-transparent"
+                    className="text-5xl sm:text-6xl font-bold bg-clip-text text-transparent experience-number-bg"
                     style={{
                       backgroundImage: 'url(/arshad_about.jpg)',
-                      backgroundSize: 'cover',
+                      backgroundSize: '150px 150px',
                       backgroundPosition: 'center',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       filter: 'contrast(1.1) brightness(0.9)',
+                      fontFamily: '"Times New Roman", Times, serif',
                     }}
                   >
-                    3
+                    1
                   </div>
                 </div>
               </div>
