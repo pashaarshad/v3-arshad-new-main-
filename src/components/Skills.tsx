@@ -205,10 +205,10 @@ const Skills = () => {
           <div ref={contentRef} className="space-y-8">
             <div className="space-y-4">
               <span className="text-accent-primary font-semibold text-lg uppercase tracking-wider">Services</span>
-              <h3 className="text-3xl sm:text-4xl font-bold text-text-primary leading-tight">
+              <h3 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white leading-tight">
                 I offer a Full-cycle of <span className="text-accent-secondary">Web Development</span> Services
               </h3>
-              <p className="text-text-secondary text-lg leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                 With more than <span className="text-accent-primary font-semibold">1+ years</span> of experience, 
                 I have been accomplishing projects with modern Web Development, new generation programming languages, 
                 and Full Stack development to deliver cost-effective solutions.
@@ -217,52 +217,60 @@ const Skills = () => {
 
             {/* Service Highlights */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-card-bg backdrop-blur-sm border border-card-border rounded-xl p-5 hover:scale-105 transition-all duration-300 group">
+              <div className="bg-card-bg backdrop-blur-sm border border-card-border rounded-xl p-5 hover:scale-105 transition-all duration-300 group shadow-lg">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 p-2 rounded-lg group-hover:scale-110 transition-transform">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-                    </svg>
+                  <div className="bg-gradient-to-br from-blue-500 to-blue-700 p-2.5 rounded-lg group-hover:scale-110 transition-transform shadow-md">
+                    <img 
+                      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" 
+                      alt="Full Stack" 
+                      className="w-7 h-7"
+                    />
                   </div>
-                  <h4 className="font-bold text-text-primary">Full Stack Development</h4>
+                  <h4 className="font-bold text-gray-900 dark:text-white">Full Stack Development</h4>
                 </div>
-                <p className="text-text-tertiary text-sm">End-to-end web applications with React, Next.js, and Node.js</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">End-to-end web applications with React, Next.js, and Node.js</p>
               </div>
 
-              <div className="bg-card-bg backdrop-blur-sm border border-card-border rounded-xl p-5 hover:scale-105 transition-all duration-300 group">
+              <div className="bg-card-bg backdrop-blur-sm border border-card-border rounded-xl p-5 hover:scale-105 transition-all duration-300 group shadow-lg">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-gradient-to-br from-green-500 to-green-700 p-2 rounded-lg group-hover:scale-110 transition-transform">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
+                  <div className="bg-gradient-to-br from-green-500 to-green-700 p-2.5 rounded-lg group-hover:scale-110 transition-transform shadow-md">
+                    <img 
+                      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" 
+                      alt="UI/UX" 
+                      className="w-7 h-7"
+                    />
                   </div>
-                  <h4 className="font-bold text-text-primary">UI/UX Design</h4>
+                  <h4 className="font-bold text-gray-900 dark:text-white">UI/UX Design</h4>
                 </div>
-                <p className="text-text-tertiary text-sm">Beautiful, responsive interfaces with modern design principles</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">Beautiful, responsive interfaces with modern design principles</p>
               </div>
 
-              <div className="bg-card-bg backdrop-blur-sm border border-card-border rounded-xl p-5 hover:scale-105 transition-all duration-300 group">
+              <div className="bg-card-bg backdrop-blur-sm border border-card-border rounded-xl p-5 hover:scale-105 transition-all duration-300 group shadow-lg">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-gradient-to-br from-purple-500 to-purple-700 p-2 rounded-lg group-hover:scale-110 transition-transform">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                    </svg>
+                  <div className="bg-gradient-to-br from-purple-500 to-purple-700 p-2.5 rounded-lg group-hover:scale-110 transition-transform shadow-md">
+                    <img 
+                      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" 
+                      alt="AI/ML" 
+                      className="w-7 h-7"
+                    />
                   </div>
-                  <h4 className="font-bold text-text-primary">AI/ML Integration</h4>
+                  <h4 className="font-bold text-gray-900 dark:text-white">AI/ML Integration</h4>
                 </div>
-                <p className="text-text-tertiary text-sm">Integrating AI APIs and ML models into applications</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">Integrating AI APIs and ML models into applications</p>
               </div>
 
-              <div className="bg-card-bg backdrop-blur-sm border border-card-border rounded-xl p-5 hover:scale-105 transition-all duration-300 group">
+              <div className="bg-card-bg backdrop-blur-sm border border-card-border rounded-xl p-5 hover:scale-105 transition-all duration-300 group shadow-lg">
                 <div className="flex items-center gap-3 mb-3">
-                  <div className="bg-gradient-to-br from-orange-500 to-orange-700 p-2 rounded-lg group-hover:scale-110 transition-transform">
-                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                    </svg>
+                  <div className="bg-gradient-to-br from-orange-500 to-orange-700 p-2.5 rounded-lg group-hover:scale-110 transition-transform shadow-md">
+                    <img 
+                      src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" 
+                      alt="Cybersecurity" 
+                      className="w-7 h-7"
+                    />
                   </div>
-                  <h4 className="font-bold text-text-primary">Cybersecurity</h4>
+                  <h4 className="font-bold text-gray-900 dark:text-white">Cybersecurity</h4>
                 </div>
-                <p className="text-text-tertiary text-sm">Secure applications with encryption and ethical hacking practices</p>
+                <p className="text-gray-600 dark:text-gray-400 text-sm">Secure applications with encryption and ethical hacking practices</p>
               </div>
             </div>
           </div>
@@ -314,12 +322,7 @@ const Skills = () => {
               })}
             </div>
 
-            {/* Center decoration */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-24 h-24 border-2 border-accent-primary/30 rounded-full animate-ping-slow"></div>
-              <div className="absolute w-16 h-16 border border-accent-secondary/40 rounded-full"></div>
             </div>
-          </div>
         </div>
       </div>
     </section>
