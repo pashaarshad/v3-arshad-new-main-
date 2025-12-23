@@ -252,3 +252,41 @@ html {
 .about-swiper:hover .swiper-button-prev {
   opacity: 1;
 }
+
+/* Experience Badge Animations */
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-slow {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.4), 0 0 30px rgba(251, 191, 36, 0.3);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 10s linear infinite;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s ease-in-out infinite;
+}
+
+/* SVG text fill for experience badge */
+.fill-accent-primary {
+  fill: var(--accent-primary);
+}
+
+[data-theme="dark"] .fill-accent-primary {
+  fill: var(--accent-secondary);
+}

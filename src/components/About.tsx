@@ -131,6 +131,46 @@ const About = () => {
                 </div>
               </SwiperSlide>
             </Swiper>
+
+            {/* Experience Badge - Bottom Right */}
+            <div className="absolute -bottom-8 -right-8 sm:-bottom-4 sm:-right-4 z-20 w-32 h-32 sm:w-40 sm:h-40">
+              <div className="relative w-full h-full bg-white rounded-full shadow-2xl border-4 border-gray-100">
+                {/* Animated rotating circle with text */}
+                <svg 
+                  className="w-full h-full animate-spin-slow"
+                  viewBox="0 0 200 200"
+                >
+                  <defs>
+                    <path 
+                      id="aboutExperienceCirclePath"
+                      d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"
+                    />
+                  </defs>
+                  <text className="text-[11px] sm:text-[13px] font-bold uppercase tracking-[0.15em]" fill="#000">
+                    <textPath xlinkHref="#aboutExperienceCirclePath" startOffset="0%">
+                      YEARS OF BEST AND SUCCESSFUL WORK EXPERIENCE •
+                    </textPath>
+                  </text>
+                </svg>
+                
+                {/* Center content with 3 - image inside the number */}
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <div 
+                    className="text-4xl sm:text-5xl font-bold bg-clip-text text-transparent"
+                    style={{
+                      backgroundImage: 'url(/arshad_about.jpg)',
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      filter: 'contrast(1.1) brightness(0.9)',
+                    }}
+                  >
+                    3
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* Right Side - Professional Summary */}
