@@ -183,13 +183,13 @@ const Home = () => {
                 href="https://github.com/pashaarshad"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-all duration-300 transform hover:scale-110 bg-white dark:bg-transparent rounded-full p-1"
+                className="transition-all duration-300 transform hover:scale-110"
                 aria-label="GitHub"
               >
                 <img 
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" 
+                  src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" 
                   alt="GitHub" 
-                  className="w-10 h-10 sm:w-12 sm:h-12 dark:invert"
+                  className="w-10 h-10 sm:w-12 sm:h-12 dark:filter dark:invert dark:brightness-200"
                 />
               </a>
             </div>

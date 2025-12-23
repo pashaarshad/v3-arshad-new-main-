@@ -1,5 +1,46 @@
 @import "tailwindcss";
 
+/* Default theme (dark) - Applied before JavaScript loads */
+:root {
+  /* Background Colors - Deep but not pure black */
+  --bg-primary: #0f172a;
+  --bg-secondary: #1e293b;
+  --bg-tertiary: #334155;
+  
+  /* Text Colors - Optimized contrast (not pure white) */
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --text-tertiary: #94a3b8;
+  
+  /* Accent Colors - Vibrant but eye-friendly */
+  --accent-primary: #3b82f6;
+  --accent-secondary: #fbbf24;
+  --accent-hover: #60a5fa;
+  
+  /* Border Colors - Subtle in dark mode */
+  --border-primary: #334155;
+  --border-secondary: #475569;
+  
+  /* Card Colors - Elevated surfaces */
+  --card-bg: rgba(30, 41, 59, 0.6);
+  --card-bg-hover: rgba(51, 65, 85, 0.8);
+  --card-border: #334155;
+  
+  /* Navigation Colors */
+  --nav-bg: rgba(15, 23, 42, 0.95);
+  --nav-border: rgba(59, 130, 246, 0.4);
+  --nav-text: #e2e8f0;
+  --nav-text-hover: #fbbf24;
+  --nav-active-bg: rgba(59, 130, 246, 0.15);
+  
+  /* Gradient Backgrounds */
+  --gradient-start: #1e293b;
+  --gradient-end: #0f172a;
+  
+  /* Shadow */
+  --shadow-color: rgba(0, 0, 0, 0.4);
+}
+
 /* Light Theme Variables - Optimized for readability & professional feel */
 :root[data-theme="light"] {
   /* Background Colors - Soft, easy on eyes */
