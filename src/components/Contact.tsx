@@ -152,6 +152,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     autoComplete="name"
+                    suppressHydrationWarning
                     className="w-full px-3 py-2.5 bg-bg-tertiary border border-border-primary text-text-primary rounded-lg focus:ring-2 focus:ring-accent-primary focus:border-transparent transition-all text-sm placeholder-text-tertiary"
                     placeholder="Your Name"
                   />
@@ -171,6 +172,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     autoComplete="email"
+                    suppressHydrationWarning
                     className="w-full px-3 py-2.5 bg-bg-tertiary border border-border-primary text-text-primary rounded-lg focus:ring-2 focus:ring-accent-primary focus:border-transparent transition-all text-sm placeholder-text-tertiary"
                     placeholder="your.email@example.com"
                   />
@@ -196,6 +198,7 @@ const Contact = () => {
                 <button
                   type="submit"
                   disabled={isSubmitting}
+                  suppressHydrationWarning
                   className="w-full bg-gradient-to-r from-accent-primary to-blue-700 text-white py-3 rounded-lg font-semibold hover:from-accent-hover hover:to-blue-800 transition-all duration-300 transform hover:scale-[1.02] text-sm shadow-lg hover:shadow-accent-primary/50 disabled:opacity-70 disabled:cursor-not-allowed disabled:transform-none flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
