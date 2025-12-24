@@ -257,7 +257,7 @@ const Contact = () => {
               <img 
                 src="/contact_us.png" 
                 alt="Contact Us" 
-                className="w-full max-w-lg h-auto object-contain drop-shadow-2xl"
+                className="w-full max-w-lg h-auto object-contain drop-shadow-2xl rounded-2xl"
               />
             </div>
           </div>
