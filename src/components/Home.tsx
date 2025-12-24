@@ -165,7 +165,7 @@ const Home = () => {
               
               {/* Resume/CV */}
               <a
-                href="/MAIN Oct Resume.pdf"
+                href="/assets/resume/MAIN Oct Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="transition-all duration-300 transform hover:scale-110"
