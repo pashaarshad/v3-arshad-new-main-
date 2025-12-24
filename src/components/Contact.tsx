@@ -126,6 +126,7 @@ const Contact = () => {
       <section 
         id="contact" 
         className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gradient-start via-bg-secondary to-gradient-end py-12 sm:py-16 md:py-20 px-4 sm:px-6 lg:px-8 transition-colors duration-300"
+        suppressHydrationWarning
       >
         <div className="max-w-6xl mx-auto w-full">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-primary mb-8 sm:mb-12 text-center">

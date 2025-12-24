@@ -73,6 +73,7 @@ const Home = () => {
     <section 
       id="home" 
       className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gradient-start via-bg-secondary to-gradient-end px-4 sm:px-6 lg:px-8 relative overflow-hidden transition-colors duration-300 -mt-32 pt-40"
+      suppressHydrationWarning
     >
       {/* PixelBlast Background */}
       <div className="absolute inset-0 z-0">

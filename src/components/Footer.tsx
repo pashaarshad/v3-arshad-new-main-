@@ -49,7 +49,7 @@ const Footer = () => {
   const clockAngles = currentTime ? getClockAngles(currentTime) : { hourAngle: 0, minuteAngle: 0, secondAngle: 0 };
 
   return (
-    <footer className="relative overflow-hidden transition-colors duration-300">
+    <footer className="relative overflow-hidden transition-colors duration-300" suppressHydrationWarning>
       {/* Blue Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-blue-900 via-blue-800 to-slate-900"></div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-blue-600/20 via-transparent to-transparent"></div>
