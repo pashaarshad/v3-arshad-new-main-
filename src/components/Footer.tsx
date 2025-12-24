@@ -79,9 +79,6 @@ const Footer = () => {
           
           {/* Left Side - Analog Clock */}
           <div className="text-center md:text-left flex flex-col items-center md:items-start">
-            <p className="text-xs text-blue-300 uppercase tracking-[0.3em] mb-1">Local Time</p>
-            <p className="text-sm text-blue-400 mb-4">INDIA • IST</p>
-            
             {/* Analog Clock */}
             {mounted && (
               <div className="relative w-32 h-32 mb-4">
@@ -151,19 +148,25 @@ const Footer = () => {
           {/* Center - Quick Links with Animation */}
           <div className="text-center">
             <p className="text-xs text-blue-300 uppercase tracking-[0.3em] mb-6">Quick Links</p>
-            <div className="flex flex-wrap justify-center gap-3 mb-6">
-              {['Home', 'About', 'Skills', 'Projects', 'Certificates', 'Contact'].map((link) => (
+            <div className="flex flex-wrap justify-center gap-4 mb-6">
+              {['Home', 'About', 'Skills', 'Projects', 'Certificates', 'Contact'].map((link, index) => (
                 <a 
                   key={link}
                   href={`#${link.toLowerCase()}`} 
-                  className="group relative px-4 py-2 text-sm font-medium text-blue-200 uppercase tracking-wider overflow-hidden rounded-lg transition-all duration-300 hover:text-white"
+                  className="group relative px-5 py-2.5 text-sm font-semibold text-blue-100 uppercase tracking-wider overflow-hidden rounded-xl transition-all duration-500 hover:text-white hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/30"
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
-                  {/* Animated background on hover */}
-                  <span className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg"></span>
-                  <span className="absolute inset-0 border border-blue-500/50 rounded-lg group-hover:border-transparent transition-colors duration-300"></span>
-                  {/* Shimmer effect */}
-                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
-                  <span className="relative z-10">{link}</span>
+                  {/* Glowing border */}
+                  <span className="absolute inset-0 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 opacity-50 group-hover:opacity-100 transition-opacity duration-500 blur-[1px]"></span>
+                  <span className="absolute inset-[2px] rounded-xl bg-slate-900/90 group-hover:bg-slate-800/90 transition-colors duration-300"></span>
+                  {/* Animated gradient background on hover */}
+                  <span className="absolute inset-[2px] rounded-xl bg-gradient-to-r from-cyan-600/0 via-blue-600/0 to-purple-600/0 group-hover:from-cyan-600/40 group-hover:via-blue-600/40 group-hover:to-purple-600/40 transition-all duration-500"></span>
+                  {/* Top shine effect */}
+                  <span className="absolute inset-x-[2px] top-[2px] h-[50%] rounded-t-xl bg-gradient-to-b from-white/10 to-transparent"></span>
+                  {/* Shimmer sweep effect */}
+                  <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/25 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000 ease-out"></span>
+                  {/* Text */}
+                  <span className="relative z-10 drop-shadow-sm">{link}</span>
                 </a>
               ))}
             </div>
@@ -194,13 +197,33 @@ const Footer = () => {
             </div>
             
             {/* Visitor Counter */}
-            <div className="inline-block p-2 bg-blue-900/50 rounded-lg border border-blue-700/50">
-              <img 
-                src="https://hitwebcounter.com/counter/counter.php?page=10964565&style=0006&nbdigits=5&type=page&initCount=0"
-                title="Visitor Counter" 
-                alt="Visit counter" 
-                className="inline-block"
-              />
+            <div className="relative group">
+              {/* Outer glow */}
+              <div className="absolute -inset-1 bg-gradient-to-r from-cyan-500 via-blue-500 to-purple-500 rounded-2xl blur-sm opacity-40 group-hover:opacity-70 transition-opacity duration-500"></div>
+              
+              {/* Counter container */}
+              <div className="relative px-6 py-4 bg-gradient-to-br from-slate-900 via-blue-950 to-slate-900 rounded-xl border border-blue-500/30 shadow-2xl">
+                {/* Top shine */}
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-400/50 to-transparent"></div>
+                
+                <p className="text-[10px] text-blue-300 uppercase tracking-[0.25em] mb-2 text-center font-medium">Visitors</p>
+                
+                <div className="flex items-center justify-center gap-2">
+                  <svg className="w-4 h-4 text-cyan-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                    <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd"/>
+                  </svg>
+                  <img 
+                    src="https://hitwebcounter.com/counter/counter.php?page=10964565&style=0006&nbdigits=5&type=page&initCount=0"
+                    title="Visitor Counter" 
+                    alt="Visit counter" 
+                    className="inline-block"
+                  />
+                </div>
+                
+                {/* Bottom shine */}
+                <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-purple-400/30 to-transparent"></div>
+              </div>
             </div>
           </div>
 
@@ -267,7 +290,7 @@ const Footer = () => {
             Copyright © {currentYear} <span className="text-cyan-400 font-medium">Arshad Pasha</span>. All rights reserved.
           </p>
           <p className="text-xs text-blue-400 flex items-center gap-1">
-            Built with <span className="text-cyan-400">Next.js</span> • <span className="text-purple-400">AI</span> • <span className="text-yellow-400">❤️</span>
+            Built with <span className="text-cyan-400 font-medium">Next.js</span> <span className="text-red-500 animate-pulse">❤️</span>
           </p>
         </div>
       </div>
