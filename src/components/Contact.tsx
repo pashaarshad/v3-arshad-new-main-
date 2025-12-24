@@ -135,9 +135,9 @@ const Contact = () => {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Side - Contact Form */}
-            <div className="bg-card-bg backdrop-blur-sm border border-card-border p-6 sm:p-8 rounded-xl shadow-2xl">
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
+            <div className="bg-card-bg backdrop-blur-sm border border-card-border p-6 sm:p-8 rounded-xl shadow-2xl" suppressHydrationWarning>
+              <form onSubmit={handleSubmit} className="space-y-4" suppressHydrationWarning>
+                <div suppressHydrationWarning>
                   <label 
                     htmlFor="name" 
                     className="block text-sm font-semibold text-text-secondary mb-1.5"
@@ -157,7 +157,7 @@ const Contact = () => {
                     placeholder="Your Name"
                   />
                 </div>
-                <div>
+                <div suppressHydrationWarning>
                   <label 
                     htmlFor="email" 
                     className="block text-sm font-semibold text-text-secondary mb-1.5"
@@ -177,7 +177,7 @@ const Contact = () => {
                     placeholder="your.email@example.com"
                   />
                 </div>
-                <div>
+                <div suppressHydrationWarning>
                   <label 
                     htmlFor="message" 
                     className="block text-sm font-semibold text-text-secondary mb-1.5"
@@ -191,6 +191,7 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     required
+                    suppressHydrationWarning
                     className="w-full px-3 py-2.5 bg-bg-tertiary border border-border-primary text-text-primary rounded-lg focus:ring-2 focus:ring-accent-primary focus:border-transparent transition-all resize-none text-sm placeholder-text-tertiary"
                     placeholder="Your message..."
                   ></textarea>
