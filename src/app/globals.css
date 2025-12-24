@@ -388,3 +388,74 @@ html {
 [data-theme="dark"] .fill-accent-primary {
   fill: var(--accent-secondary);
 }
+
+/* Success Popup Animations */
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes success-bounce {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+@keyframes draw-check {
+  0% {
+    stroke-dasharray: 0, 100;
+  }
+  100% {
+    stroke-dasharray: 100, 0;
+  }
+}
+
+@keyframes ping-once {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes progress-shrink {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-success-bounce {
+  animation: success-bounce 0.6s ease-in-out;
+}
+
+.animate-draw-check {
+  stroke-dasharray: 0, 100;
+  animation: draw-check 0.5s ease-out 0.2s forwards;
+}
+
+.animate-ping-once {
+  animation: ping-once 0.6s ease-out forwards;
+}
+
+.animate-progress-shrink {
+  animation: progress-shrink 5s linear forwards;
+}
