@@ -31,7 +31,7 @@ const techIcons = [
   
   // Cloud Platforms & AI/ML
   { name: 'Google Cloud', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg' },
-  { name: 'Vertex AI', icon: 'https://www.gstatic.com/pantheon/images/welcome/supercloud.svg' },
+  { name: 'Vertex AI', icon: 'https://www.gstatic.com/bricks/image/me6u4lx8TR7uZxMdl7YC5WlyZC0P2y0LzMAYP3mICUJJz4x7eZ0AXWaXc3n9EPNxfvCoFc6Y3mmmGg.png' },
   { name: 'Gemini', icon: 'https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg' },
   
   // DevOps & Version Control
@@ -54,7 +54,7 @@ const techIcons = [
   { name: 'UiPath', icon: 'https://cdn.worldvectorlogo.com/logos/uipath-2.svg' },
   
   // Cybersecurity
-  { name: 'Kali Linux', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg' },
+  { name: 'Kali Linux', icon: 'https://www.kali.org/images/kali-dragon-icon.svg' },
 ];
 
 const Skills = () => {
