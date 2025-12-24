@@ -11,26 +11,51 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
+// Get initial theme without causing hydration mismatch
+const getInitialTheme = (): Theme => {
+  if (typeof window === 'undefined') return 'dark';
+  
+  try {
+    const savedTheme = localStorage.getItem('theme') as Theme | null;
+    if (savedTheme) return savedTheme;
+    
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return prefersDark ? 'dark' : 'light';
+  } catch {
+    return 'dark';
+  }
+};
+
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [theme, setTheme] = useState<Theme>('dark');
 
   useEffect(() => {
-    // Get theme from localStorage or default to dark
-    const savedTheme = localStorage.getItem('theme') as Theme | null;
-    const initialTheme = savedTheme || 'dark';
+    // Get the actual theme on client side
+    const initialTheme = getInitialTheme();
     setTheme(initialTheme);
     document.documentElement.setAttribute('data-theme', initialTheme);
-  }, []);
 
-  useEffect(() => {
-    // Update theme attribute whenever theme changes
-    document.documentElement.setAttribute('data-theme', theme);
-  }, [theme]);
+    // Listen for system theme changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const handleChange = (e: MediaQueryListEvent) => {
+      // Only auto-switch if user hasn't manually set a preference
+      const userPreference = localStorage.getItem('theme');
+      if (!userPreference) {
+        const newTheme: Theme = e.matches ? 'dark' : 'light';
+        setTheme(newTheme);
+        document.documentElement.setAttribute('data-theme', newTheme);
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
     localStorage.setItem('theme', newTheme);
+    document.documentElement.setAttribute('data-theme', newTheme);
   };
 
   return (

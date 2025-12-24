@@ -190,14 +190,21 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         
-        {/* Theme initialization */}
+        {/* Theme initialization - detects system preference */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
               try {
-                const theme = localStorage.getItem('theme') || 'dark';
-                document.documentElement.setAttribute('data-theme', theme);
-              } catch (e) {}
+                const savedTheme = localStorage.getItem('theme');
+                if (savedTheme) {
+                  document.documentElement.setAttribute('data-theme', savedTheme);
+                } else {
+                  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  document.documentElement.setAttribute('data-theme', prefersDark ? 'dark' : 'light');
+                }
+              } catch (e) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+              }
             `,
           }}
         />
