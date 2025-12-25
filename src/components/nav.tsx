@@ -20,6 +20,7 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
   const circleRefs = useRef<Array<HTMLSpanElement | null>>([]);
   const tlRefs = useRef<Array<gsap.core.Timeline | null>>([]);
   const activeTweenRefs = useRef<Array<gsap.core.Tween | null>>([]);
@@ -29,6 +30,15 @@ const Navbar = () => {
   const mobileMenuRef = useRef<HTMLDivElement | null>(null);
   const navItemsRef = useRef<HTMLDivElement | null>(null);
   const logoRef = useRef<HTMLAnchorElement | null>(null);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+        setIsMobile(window.innerWidth < 768);
+    };
+    checkIsMobile();
+    window.addEventListener('resize', checkIsMobile);
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
 
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string, index: number) => {
     e.preventDefault();
@@ -40,6 +50,8 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    if (isMobile) return;
+
     const layout = () => {
       circleRefs.current.forEach(circle => {
         if (!circle?.parentElement) return;
@@ -98,11 +110,6 @@ const Navbar = () => {
       document.fonts.ready.then(layout).catch(() => {});
     }
 
-    const menu = mobileMenuRef.current;
-    if (menu) {
-      gsap.set(menu, { visibility: 'hidden', opacity: 0, scaleY: 1, y: 0 });
-    }
-
     // Initial load animation
     const logo = logoRef.current;
     const navItemsDiv = navItemsRef.current;
@@ -125,6 +132,16 @@ const Navbar = () => {
       });
     }
 
+    return () => {
+      window.removeEventListener('resize', onResize);
+    };
+  }, [isMobile]);
+
+  useEffect(() => {
+     const menu = mobileMenuRef.current;
+    if (menu) {
+      gsap.set(menu, { visibility: 'hidden', opacity: 0, scaleY: 1, y: 0 });
+    }
     // Intersection Observer to detect active section
     const observerOptions = {
       root: null,
@@ -156,12 +173,12 @@ const Navbar = () => {
     });
 
     return () => {
-      window.removeEventListener('resize', onResize);
       observer.disconnect();
     };
   }, []);
 
   const handleEnter = (i: number) => {
+    if (isMobile) return;
     setHoveredIndex(i);
     const tl = tlRefs.current[i];
     if (!tl) return;
@@ -174,6 +191,7 @@ const Navbar = () => {
   };
 
   const handleLeave = (i: number) => {
+    if (isMobile) return;
     setHoveredIndex(null);
     const tl = tlRefs.current[i];
     if (!tl) return;
@@ -186,6 +204,7 @@ const Navbar = () => {
   };
 
   const handleLogoEnter = () => {
+    if (isMobile) return;
     const img = logoImgRef.current;
     if (!img) return;
     logoTweenRef.current?.kill();
@@ -289,9 +308,8 @@ const Navbar = () => {
                     onMouseEnter={() => handleEnter(i)}
                     onMouseLeave={() => handleLeave(i)}
                   >
-                    {/* Pixel Effect Canvas - Always active for current section */}
                     <PixelEffect 
-                      isActive={isActive || hoveredIndex === i}
+                      isActive={!isMobile && (isActive || hoveredIndex === i)}
                       gap={3}
                       speed={isActive ? 40 : 60}
                       colors={isActive ? "#fbbf24,#f59e0b,#d97706" : "#3b82f6,#60a5fa,#93c5fd"}
