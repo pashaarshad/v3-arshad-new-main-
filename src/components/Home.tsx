@@ -112,7 +112,7 @@ const Home = () => {
               ref={titleRef}
               className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight"
             >
-              <span className="text-text-secondary">HI,</span><br />
+              <span className="text-text-secondary">Hi Arshad,</span><br />
               <span className="text-text-primary">I Am <span className="text-accent-secondary">Arshad Pasha</span></span><br />
               <span ref={typedRef} className="text-accent-primary text-2xl sm:text-3xl md:text-4xl lg:text-5xl"></span>
             </h1>
