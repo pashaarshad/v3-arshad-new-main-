@@ -1,6 +1,5 @@
 const nextConfig = {
   /* Performance optimizations */
-  reactCompiler: true,
 
   // Enable compression
   compress: true,
