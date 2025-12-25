@@ -236,6 +236,7 @@ const Home = () => {
                     src="/arshad_home_good.jpg" 
                     alt="Arshad Pasha - Infosys" 
                     className="w-full h-[500px] object-cover transform group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/fallback.jpg"; }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
@@ -246,6 +247,7 @@ const Home = () => {
                     src="/arshad_sap_home.jpg" 
                     alt="Arshad Pasha - SAP" 
                     className="w-full h-[500px] object-cover transform group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/fallback.jpg"; }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
@@ -256,6 +258,7 @@ const Home = () => {
                     src="/arshad_infosysLogo.jpg" 
                     alt="Arshad Pasha - SAP" 
                     className="w-full h-[500px] object-cover transform group-hover:scale-105 transition-transform duration-500"
+                    onError={(e) => { (e.currentTarget as HTMLImageElement).src = "/fallback.jpg"; }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
