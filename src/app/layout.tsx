@@ -26,7 +26,6 @@ export const metadata: Metadata = {
     template: "%s | Arshad Pasha - Full Stack Developer"
   },
   description: "Arshad Pasha - Professional Full Stack Web Developer & AI/ML Engineer based in Mysore, India. Expert in ReactJS, Next.js, Python, Node.js, TypeScript, and Machine Learning. Available for freelance projects and collaborations.",
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no',
   keywords: [
     "Arshad Pasha",
     "Arshad Masar",
